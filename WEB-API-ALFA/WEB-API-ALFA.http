@@ -1,0 +1,6 @@
+@WEB_API_ALFA_HostAddress = http://localhost:5201
+
+GET {{WEB_API_ALFA_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
