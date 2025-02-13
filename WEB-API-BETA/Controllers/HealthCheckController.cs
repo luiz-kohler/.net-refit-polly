@@ -18,6 +18,7 @@ namespace WEB_API_BETA.Controllers
         [HttpGet("check")]
         public IActionResult Check()
         {
+            _logger.LogInformation(new string('=', 100));
             _logger.LogInformation("API BETA - healthcheck/check - request started");
             _logger.LogInformation("API BETA - healthcheck/check - current request counter: {RequestCounter}", requestCounter);
 
@@ -25,22 +26,24 @@ namespace WEB_API_BETA.Controllers
             {
                 requestCounter++;
                 _logger.LogWarning("API BETA - healthcheck/check - request error 500. Updated request counter: {RequestCounter}", requestCounter);
+                _logger.LogInformation(new string('=', 100));
                 return StatusCode((int)HttpStatusCode.InternalServerError, "Error");
             }
 
 
             _logger.LogInformation("API BETA - healthcheck/check - request accepted.");
-            _logger.LogInformation("  ");
+            _logger.LogInformation(new string('=', 100)); 
             return Ok("Request accepted.");
         }
 
         [HttpGet("reset")]
         public IActionResult Reset()
         {
+            _logger.LogInformation(new string('=', 100));
             _logger.LogInformation("API BETA - healthcheck/reset - request started");
             requestCounter = 0;
             _logger.LogInformation("API BETA - healthcheck/reset - request counter reset to zero.");
-            _logger.LogInformation("  ");
+            _logger.LogInformation(new string('=', 100));
 
             return Ok("Request counter reset.");
         }
